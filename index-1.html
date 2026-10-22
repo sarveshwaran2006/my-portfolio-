@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sarveshwaran S | Web Developer & AI Student</title>
+<meta name="description" content="Portfolio of Sarveshwaran S, B.Tech AI & Data Science student and web development intern.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f8fc; --surface:#ffffff; --line:#dde3f0; --text:#151b33; --muted:#5a6486;
+  --a:#4f5bd5; --b:#0e9f8a; --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:"DM Sans",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--b);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+
+/* background orb that follows the cursor */
+#orb{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(79,91,213,.15),transparent 65%);
+  transform:translate(-50%,-50%);left:70%;top:25%;transition:left .6s ease-out,top .6s ease-out}
+main,header,footer{position:relative;z-index:1}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:10;backdrop-filter:blur(14px);background:rgba(246,248,252,.8);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.logo{font-family:Sora;font-weight:800;font-size:1.15rem}
+.logo span{color:var(--b)}
+nav ul{display:flex;gap:28px;list-style:none}
+nav ul a{color:var(--muted);font-size:.95rem;transition:color .2s}
+nav ul a:hover,nav ul a.on{color:var(--text)}
+.menu{display:none;background:none;border:0;color:var(--text);font-size:1.6rem;cursor:pointer}
+
+/* hero: the one orchestrated load sequence */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:64px}
+.hero p.hi{color:var(--b);font-weight:500;margin-bottom:14px;opacity:0;animation:up .7s .1s forwards}
+.hero h1{font-size:clamp(2.8rem,9vw,6.4rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 .ch{display:inline-block;opacity:0;transform:translateY(60%) rotate(4deg);animation:letter .7s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .grad{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-family:Sora;font-size:clamp(1.1rem,3vw,1.6rem);margin-top:18px;color:var(--muted);min-height:2.2em;opacity:0;animation:up .7s 1s forwards}
+.role b{color:var(--text);font-weight:500}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--b);margin-left:3px;vertical-align:-3px;animation:blink 1s steps(1) infinite}
+.lead{max-width:56ch;margin-top:10px;color:var(--muted);opacity:0;animation:up .7s 1.2s forwards}
+.cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;opacity:0;animation:up .7s 1.4s forwards}
+.btn{padding:13px 26px;border-radius:999px;font-weight:700;border:1px solid var(--line);transition:transform .2s,box-shadow .2s,background .2s}
+.btn:hover{transform:translateY(-3px)}
+.btn.main{background:linear-gradient(90deg,var(--a),var(--b));color:#fff;border:0}
+.btn.main:hover{box-shadow:0 10px 30px rgba(79,91,213,.3)}
+.btn.ghost{background:var(--surface)}
+.btn.ghost:hover{border-color:var(--a)}
+@keyframes letter{to{opacity:1;transform:none}}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes blink{50%{opacity:0}}
+
+/* sections */
+section{padding:96px 0}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:12px}
+.sub{color:var(--muted);max-width:56ch;margin-bottom:44px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start}
+.about p+p{margin-top:16px}
+.facts{box-shadow:0 4px 18px rgba(30,40,90,.06);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.facts dt{color:var(--muted);font-size:.85rem}
+.facts dd{font-weight:500;margin-bottom:16px}
+.facts dd:last-child{margin-bottom:0}
+
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{box-shadow:0 4px 18px rgba(30,40,90,.06);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .3s,border-color .3s}
+.card:hover{transform:translateY(-6px);border-color:var(--a)}
+.card h3{font-size:1.05rem;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:.85rem;padding:5px 12px;border-radius:999px;background:rgba(79,91,213,.1);color:#3a44b0}
+
+/* experience timeline: a real sequence, so it gets a rail */
+.tl{border-left:2px solid var(--line);padding-left:30px;position:relative}
+.tl .item{position:relative;margin-bottom:36px}
+.tl .item::before{content:"";position:absolute;left:-39px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--b);box-shadow:0 0 0 6px rgba(14,159,138,.18)}
+.tl .when{color:var(--b);font-size:.9rem;font-weight:500}
+.tl h3{font-size:1.25rem;margin:4px 0}
+.tl .org{color:var(--muted);margin-bottom:10px}
+.tl ul{padding-left:18px;color:var(--muted)}
+.tl li+li{margin-top:6px}
+
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+.proj{border-style:dashed}
+.edu{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.edu .when{color:var(--b);font-size:.9rem;font-weight:500}
+.edu h3{font-size:1.15rem;margin:4px 0}
+.edu .org{color:var(--muted)}
+.proj p{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+.proj .link{color:var(--b);font-weight:500;font-size:.95rem}
+
+.contact{text-align:center}
+.contact .sub{margin-inline:auto}
+.contact .big{font-family:Sora;font-size:clamp(1.3rem,4vw,2.2rem);font-weight:700;word-break:break-all;display:inline-block;transition:color .2s}
+.contact .big:hover{color:var(--b)}
+.links{display:flex;gap:14px;justify-content:center;margin-top:30px;flex-wrap:wrap}
+footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:760px){
+  .about{grid-template-columns:1fr}
+  .menu{display:block}
+  nav ul{position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .35s}
+  nav ul.open{max-height:320px}
+  nav ul a{display:block;padding:14px 24px}
+  section{padding:72px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="orb" aria-hidden="true"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#home" class="logo">Sarvesh<span>waran</span></a>
+    <button class="menu" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <ul id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="wrap">
+    <p class="hi">Hi, I’m</p>
+    <h1 id="name" aria-label="Sarveshwaran S">Sarveshwaran <span class="grad">S</span></h1>
+    <p class="role"><b>I build</b> <span id="typed"></span><span class="caret"></span></p>
+    <p class="lead">B.Tech student in Artificial Intelligence and Data Science. I enjoy building responsive web apps and turning practical problems into clean software.</p>
+    <div class="cta">
+      <a class="btn main" href="#contact">Get in touch</a>
+      <a class="btn ghost" href="#projects">See my work</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="about">
+  <div class="wrap">
+    <h2 class="reveal">About me</h2>
+    <p class="sub reveal">A student developer who learns by building.</p>
+    <div class="about">
+      <div class="reveal">
+        <p>I’m studying Artificial Intelligence and Data Science at M.I.E.T. Engineering College, Tiruchirappalli. My foundation is in programming, web development and database management.</p>
+        <p>I work with HTML5, CSS3, JavaScript, Python, SQL and MySQL, and I’m exploring AI-driven software. I’m looking for projects where I can apply what I know, learn new technologies and contribute to a development team.</p>
+      </div>
+      <dl class="facts reveal">
+        <dt>Education</dt><dd>B.Tech, AI and Data Science (2024 – 2028)</dd>
+        <dt>College</dt><dd>M.I.E.T. Engineering College, Tiruchirappalli</dd>
+        <dt>Certification</dt><dd>Python Programming, BigLearn, Trichy</dd>
+        <dt>Focus</dt><dd>Web development and AI-driven software</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2 class="reveal">Skills</h2>
+    <p class="sub reveal">The tools I use to build and ship.</p>
+    <div class="skills">
+      <div class="card reveal"><h3>Frontend</h3><div class="tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div></div>
+      <div class="card reveal"><h3>Backend and programming</h3><div class="tags"><span>Python</span><span>Java (basics)</span></div></div>
+      <div class="card reveal"><h3>Databases</h3><div class="tags"><span>SQL</span><span>MySQL</span></div></div>
+      <div class="card reveal"><h3>CMS</h3><div class="tags"><span>WordPress</span></div></div>
+      <div class="card reveal"><h3>Tools</h3><div class="tags"><span>VS Code</span><span>Jupyter Notebook</span><span>GitHub</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <h2 class="reveal">Experience</h2>
+    <p class="sub reveal">My internship experience.</p>
+    <div class="tl">
+      <div class="item reveal">
+        <div class="when">June 2026 – July 2026</div>
+        <h3>Web Development Intern</h3>
+        <div class="org">DLK Technologies</div>
+        <ul>
+          <li>Gained practical exposure to website development concepts and workflows.</li>
+          <li>Built familiarity with frontend technologies and the fundamentals of creating web pages.</li>
+          <li>Strengthened problem-solving skills and technical understanding.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2 class="reveal">Education</h2>
+    <p class="sub reveal">Where I’m studying and what I’ve certified.</p>
+    <div class="edu">
+      <div class="card reveal">
+        <div class="when">2024 – 2028</div>
+        <h3>B.Tech, Artificial Intelligence and Data Science</h3>
+        <div class="org">M.I.E.T. Engineering College, Tiruchirappalli</div>
+      </div>
+      <div class="card reveal">
+        <div class="when">Certification</div>
+        <h3>Python Programming</h3>
+        <div class="org">BigLearn, Trichy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2 class="reveal">Projects</h2>
+    <p class="sub reveal">Selected work built with core web technologies.</p>
+    <div class="projects">
+      <article class="card proj reveal">
+        <h3>Resume Portfolio</h3>
+        <p>A personal resume portfolio website built using HTML5 and CSS3.</p>
+        <div class="tags"><span>HTML5</span><span>CSS3</span></div>
+        <a class="link" href="https://github.com/sarveshwaran2006" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px">View on GitHub</a>
+      </article>
+      <article class="card proj reveal">
+        <h3>Shopsy</h3>
+        <p>A shopping website built using HTML5, CSS3 and JavaScript.</p>
+        <div class="tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span></div>
+        <a class="link" href="https://github.com/sarveshwaran2006" target="_blank" rel="noopener" style="display:inline-block;margin-top:16px">View on GitHub</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2 class="reveal">Let’s work together</h2>
+    <p class="sub reveal">Open to internships, entry-level roles and collaborations.</p>
+    <a class="big reveal" href="mailto:Waransarvesh537@gmail.com">Waransarvesh537@gmail.com</a>
+    <div class="links reveal">
+      <a class="btn ghost" href="tel:+917598351183">+91 75983 51183</a>
+      <a class="btn ghost" href="https://github.com/sarveshwaran2006" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="yr"></span> Sarveshwaran S</footer>
+
+<script>
+// hero name: split into letters for the staggered entrance
+(function(){
+  var h=document.getElementById("name"),out="",i=0;
+  h.childNodes.forEach(function(n){
+    var wrap=n.nodeType===3?null:n.cloneNode(false);
+    var txt=n.textContent;var html="";
+    for(var c of txt){
+      html+=c===" "?" ":'<span class="ch" style="animation-delay:'+(0.2+i*0.045)+'s">'+c+"</span>";
+      if(c!==" ")i++;
+    }
+    if(wrap){wrap.innerHTML=html;out+=wrap.outerHTML}else out+=html;
+  });
+  h.innerHTML=out;
+})();
+
+// typing effect
+(function(){
+  var words=["responsive websites.","Python projects.","clean user interfaces.","AI-driven ideas."];
+  var el=document.getElementById("typed"),w=0,c=0,del=false;
+  if(matchMedia("(prefers-reduced-motion:reduce)").matches){el.textContent=words[0];return}
+  function tick(){
+    var cur=words[w];
+    el.textContent=cur.slice(0,c);
+    if(!del&&c===cur.length){del=true;return setTimeout(tick,1500)}
+    if(del&&c===0){del=false;w=(w+1)%words.length}
+    c+=del?-1:1;
+    setTimeout(tick,del?35:70);
+  }
+  setTimeout(tick,1600);
+})();
+
+// orb follows the pointer
+addEventListener("pointermove",function(e){
+  var o=document.getElementById("orb");o.style.left=e.clientX+"px";o.style.top=e.clientY+"px";
+});
+
+// reveal on scroll
+var io=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}});
+},{threshold:.15});
+document.querySelectorAll(".reveal").forEach(function(el,i){el.style.transitionDelay=(i%4)*70+"ms";io.observe(el)});
+
+// active nav link
+var secs=document.querySelectorAll("section[id]"),links=document.querySelectorAll("#links a");
+var so=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})}});
+},{rootMargin:"-45% 0px -50% 0px"});
+secs.forEach(function(s){so.observe(s)});
+
+// mobile menu
+var btn=document.querySelector(".menu"),ul=document.getElementById("links");
+btn.addEventListener("click",function(){var o=ul.classList.toggle("open");btn.setAttribute("aria-expanded",o)});
+links.forEach(function(a){a.addEventListener("click",function(){ul.classList.remove("open");btn.setAttribute("aria-expanded","false")})});
+
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
